@@ -69,6 +69,7 @@ export class Game {
     this.autosaveTimer = null;
     this.pixiLayers = null;
     this.minimap = null;
+    this.minimapViewport = null;
     this.mapsData = null;
     this.resourcesData = null;
     this.factoriesData = null;
@@ -206,6 +207,7 @@ export class Game {
     if (this.app) {
       this.app.destroy(true);
       this.minimap = null;
+      this.minimapViewport = null;
     }
     const view = document.getElementById('view-main');
     if (!view) {
@@ -293,12 +295,20 @@ export class Game {
       this.minimap.destroy();
       this.minimap = null;
     }
+    if (this.minimapViewport) {
+      this.minimapViewport.destroy();
+      this.minimapViewport = null;
+    }
     const width = 160;
     const height = 100;
     const PIXI = this.PIXI;
     const G = this.map.gen;
     const sx = width / G.w;
     const sy = height / G.h;
+    this.minimapW = width;
+    this.minimapH = height;
+    this.minimapSx = sx;
+    this.minimapSy = sy;
     const mini = new PIXI.Graphics();
     mini.x = Math.max(8, this.app.screen.width - width - 8);
     mini.y = Math.max(8, this.app.screen.height - height - 8);
@@ -313,6 +323,7 @@ export class Game {
     mini.rect(0, 0, width, height).stroke({ width: 1, color: 0x4a5258 });
     this.pixiLayers.ui.addChild(mini);
     this.minimap = mini;
+    this._updateMinimapViewport();
   }
 
   _onResize() {
@@ -388,6 +399,7 @@ export class Game {
     this.input = new InputState(canvas, this.camera);
     this.input.on('click', (e) => this._onClick(e));
     this.input.on('zoom', () => this._updateCamera());
+    this.input.on('pan', () => this._updateCamera());
     this.input.on('pause', () => this.setSpeed(0));
     this.input.on('cancel', () => this.placement.clearSelection());
     this.input.on('demolish', () => {
@@ -452,6 +464,66 @@ export class Game {
     this.pixiLayers.effects.x = c.x;
     this.pixiLayers.effects.y = c.y;
     this.pixiLayers.effects.scale.set(c.scale);
+    this._updateMinimapViewport();
+  }
+
+  /** 在小地图上绘制与摄像机视口同步的矩形框 */
+  _updateMinimapViewport() {
+    if (!this.minimap || !this.camera || !this.map || !this.app || !this.PIXI) return;
+    const c = this.camera;
+    const g = this.map.grid;
+    const sw = this.app.screen.width;
+    const sh = this.app.screen.height;
+    const miniW = this.minimapW;
+    const miniH = this.minimapH;
+    const sx = this.minimapSx;
+    const sy = this.minimapSy;
+    // 视口四角 → 世界坐标
+    const corners = [
+      c.screenToWorld(0, 0),
+      c.screenToWorld(sw, 0),
+      c.screenToWorld(sw, sh),
+      c.screenToWorld(0, sh),
+    ];
+    // 世界坐标 → 格子坐标（连续值），取包围盒
+    let minCx = Infinity, minCy = Infinity, maxCx = -Infinity, maxCy = -Infinity;
+    for (const p of corners) {
+      let cx, cy;
+      if (g.kind === 'hex') {
+        const s = g.size;
+        cx = (Math.sqrt(3) / 3 * p.x - 1 / 3 * p.y) / s;
+        cy = (2 / 3 * p.y) / s;
+      } else {
+        cx = p.x / g.cellSize;
+        cy = p.y / g.cellSize;
+      }
+      if (cx < minCx) minCx = cx;
+      if (cy < minCy) minCy = cy;
+      if (cx > maxCx) maxCx = cx;
+      if (cy > maxCy) maxCy = cy;
+    }
+    // 格子坐标 → 小地图像素
+    let rx = minCx * sx;
+    let ry = minCy * sy;
+    let rw = (maxCx - minCx) * sx;
+    let rh = (maxCy - minCy) * sy;
+    // 裁剪到小地图边界
+    if (rx < 0) { rw += rx; rx = 0; }
+    if (ry < 0) { rh += ry; ry = 0; }
+    if (rx + rw > miniW) rw = miniW - rx;
+    if (ry + rh > miniH) rh = miniH - ry;
+    if (rw < 0) rw = 0;
+    if (rh < 0) rh = 0;
+    if (!this.minimapViewport) {
+      this.minimapViewport = new this.PIXI.Graphics();
+      this.pixiLayers.ui.addChild(this.minimapViewport);
+    }
+    const vp = this.minimapViewport;
+    vp.x = this.minimap.x;
+    vp.y = this.minimap.y;
+    vp.clear();
+    vp.rect(rx, ry, rw, rh).fill({ color: 0xffffff, alpha: 0.1 });
+    vp.rect(rx, ry, rw, rh).stroke({ width: 1.5, color: 0xffffff, alpha: 0.9 });
   }
 
   _onWorkerMessage(msg) {

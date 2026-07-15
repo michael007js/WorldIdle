@@ -60,6 +60,7 @@ export class InputState {
       const dy = e.clientY - this.last.y;
       this.last.x = e.clientX; this.last.y = e.clientY;
       this.camera.pan(dx, dy);
+      this._emit('pan');
     }
   }
   _onUp() {
