@@ -68,6 +68,7 @@ export class Game {
     this.currentSlot = 1;
     this.autosaveTimer = null;
     this.pixiLayers = null;
+    this.minimap = null;
     this.mapsData = null;
     this.resourcesData = null;
     this.factoriesData = null;
@@ -204,6 +205,7 @@ export class Game {
   async _initPixi() {
     if (this.app) {
       this.app.destroy(true);
+      this.minimap = null;
     }
     const view = document.getElementById('view-main');
     if (!view) {
@@ -253,13 +255,7 @@ export class Game {
     window.addEventListener('resize', () => this._onResize());
 
     // minimap
-    if (!document.getElementById('minimap')) {
-      const mm = document.createElement('canvas');
-      mm.id = 'minimap';
-      mm.width = 160; mm.height = 100;
-      view.appendChild(mm);
-      this._drawMinimap();
-    }
+    this._drawMinimap();
   }
 
   _drawGrid() {
@@ -292,28 +288,38 @@ export class Game {
   }
 
   _drawMinimap() {
-    const mm = document.getElementById('minimap');
-    if (!mm) return;
-    const ctx = mm.getContext('2d');
+    if (!this.app || !this.pixiLayers || !this.PIXI || !this.map) return;
+    if (this.minimap) {
+      this.minimap.destroy();
+      this.minimap = null;
+    }
+    const width = 160;
+    const height = 100;
+    const PIXI = this.PIXI;
     const G = this.map.gen;
-    ctx.fillStyle = '#14181c';
-    ctx.fillRect(0, 0, mm.width, mm.height);
-    const sx = mm.width / G.w;
-    const sy = mm.height / G.h;
+    const sx = width / G.w;
+    const sy = height / G.h;
+    const mini = new PIXI.Graphics();
+    mini.x = Math.max(8, this.app.screen.width - width - 8);
+    mini.y = Math.max(8, this.app.screen.height - height - 8);
+    mini.rect(0, 0, width, height).fill(0x14181c);
     for (let y = 0; y < G.h; y++) {
       for (let x = 0; x < G.w; x++) {
         const cell = G.cells[y * G.w + x];
-        const col = this.map.def.biomes.find(b => b.type === cell.biome)?.color || '#2a3a26';
-        ctx.fillStyle = col;
-        ctx.fillRect(x * sx, y * sy, Math.ceil(sx), Math.ceil(sy));
+        const col = parseInt((this.map.def.biomes.find(b => b.type === cell.biome)?.color || '#2a3a26').slice(1), 16);
+        mini.rect(x * sx, y * sy, Math.ceil(sx), Math.ceil(sy)).fill(col);
       }
     }
+    mini.rect(0, 0, width, height).stroke({ width: 1, color: 0x4a5258 });
+    this.pixiLayers.ui.addChild(mini);
+    this.minimap = mini;
   }
 
   _onResize() {
     if (!this.app) return;
     const view = document.getElementById('view-main');
     this.app.renderer.resize(view.clientWidth, view.clientHeight);
+    this._drawMinimap();
   }
 
   _initUI() {
