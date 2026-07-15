@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "resources": [
+    {"id":"iron","name":"铁矿石","nameEn":"Iron Ore","category":"raw","basePrice":2,"icon":"iron"},
+    {"id":"coal","name":"煤炭","nameEn":"Coal","category":"raw","basePrice":1.5,"icon":"coal"},
+    {"id":"copper","name":"铜矿石","nameEn":"Copper Ore","category":"raw","basePrice":3,"icon":"copper"},
+    {"id":"stone","name":"石头","nameEn":"Stone","category":"raw","basePrice":1,"icon":"stone"},
+    {"id":"water","name":"水","nameEn":"Water","category":"raw","basePrice":0.5,"icon":"water"},
+    {"id":"oil","name":"原油","nameEn":"Oil","category":"raw","basePrice":4,"icon":"oil"},
+    {"id":"wood","name":"木材","nameEn":"Wood","category":"raw","basePrice":2.5,"icon":"wood"},
+    {"id":"iron_plate","name":"铁板","nameEn":"Iron Plate","category":"intermediate","basePrice":5,"icon":"iron_plate"},
+    {"id":"copper_plate","name":"铜板","nameEn":"Copper Plate","category":"intermediate","basePrice":7,"icon":"copper_plate"},
+    {"id":"steel","name":"钢材","nameEn":"Steel","category":"intermediate","basePrice":12,"icon":"steel"},
+    {"id":"gear","name":"齿轮","nameEn":"Gear","category":"intermediate","basePrice":8,"icon":"gear"},
+    {"id":"circuit","name":"电路板","nameEn":"Circuit","category":"intermediate","basePrice":18,"icon":"circuit"},
+    {"id":"wire","name":"铜线","nameEn":"Wire","category":"intermediate","basePrice":4,"icon":"wire"},
+    {"id":"plastic","name":"塑料","nameEn":"Plastic","category":"intermediate","basePrice":6,"icon":"plastic"},
+    {"id":"brick","name":"砖块","nameEn":"Brick","category":"intermediate","basePrice":4,"icon":"brick"},
+    {"id":"concrete","name":"混凝土","nameEn":"Concrete","category":"intermediate","basePrice":10,"icon":"concrete"},
+    {"id":"engine","name":"引擎","nameEn":"Engine","category":"product","basePrice":45,"icon":"engine"},
+    {"id":"robot","name":"机器人","nameEn":"Robot","category":"product","basePrice":120,"icon":"robot"},
+    {"id":"computer","name":"计算机","nameEn":"Computer","category":"product","basePrice":80,"icon":"computer"},
+    {"id":"building_module","name":"建筑模块","nameEn":"Building Module","category":"product","basePrice":35,"icon":"building_module"},
+    {"id":"fuel","name":"燃料","nameEn":"Fuel","category":"product","basePrice":15,"icon":"fuel"},
+    {"id":"tool","name":"工具","nameEn":"Tool","category":"product","basePrice":25,"icon":"tool"},
+    {"id":"swiss","name":"$wiss","nameEn":"$wiss","category":"special","basePrice":0,"icon":"swiss"},
+    {"id":"research","name":"研究点","nameEn":"Research","category":"special","basePrice":0,"icon":"research"}
+  ]
+}

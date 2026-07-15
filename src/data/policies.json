@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "policies": [
+    {"id":"output_boost_1","name":"产量提升 I","desc":"所有工厂产量 +25%","category":"production","cost":1,"requires":[],"effects":{"factoryOutputMult":1.25}},
+    {"id":"output_boost_2","name":"产量提升 II","desc":"所有工厂产量再 +35%","category":"production","cost":2,"requires":["output_boost_1"],"effects":{"factoryOutputMult":1.35}},
+    {"id":"market_fee_cut","name":"市场减负","desc":"市场手续费 -50%","category":"market","cost":1,"requires":[],"effects":{"marketFeeMult":0.5}},
+    {"id":"market_fee_zero","name":"特许交易","desc":"市场手续费再 -80%","category":"market","cost":3,"requires":["market_fee_cut"],"effects":{"marketFeeMult":0.2}},
+    {"id":"offline_boost","name":"离线优化","desc":"离线收益 +100%","category":"idle","cost":1,"requires":[],"effects":{"offlineRateMult":2.0}},
+    {"id":"offline_cap_up","name":"持续运营","desc":"离线时间上限 +24h","category":"idle","cost":2,"requires":["offline_boost"],"effects":{"offlineMaxSecMult":2.0}},
+    {"id":"demolish_refund","name":"资源回收","desc":"拆除返还 +50%","category":"economy","cost":1,"requires":[],"effects":{"demolishRefundBonus":0.5}},
+    {"id":"demolish_full","name":"无损拆除","desc":"拆除返还 100%","category":"economy","cost":3,"requires":["demolish_refund"],"effects":{"demolishRefundBonus":0.5}},
+    {"id":"upgrade_discount","name":"升级折扣","desc":"工厂升级成本 -30%","category":"economy","cost":2,"requires":[],"effects":{"upgradeCostMult":0.7}},
+    {"id":"price_vol_down","name":"市场稳定","desc":"价格波动 -50%","category":"market","cost":2,"requires":["market_fee_cut"],"effects":{"priceVolMult":0.5}},
+    {"id":"prestige_gain","name":"重生精通","desc":"$wiss 收益 +50%","category":"prestige","cost":3,"requires":["output_boost_1"],"effects":{"prestigeGainMult":1.5}},
+    {"id":"valuation_boost","name":"估值加成","desc":"工厂估值权重 +20%","category":"economy","cost":2,"requires":["upgrade_discount"],"effects":{"valuationFactoryWeight":1.2}}
+  ]
+}

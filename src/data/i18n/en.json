@@ -1,0 +1,55 @@
+{
+  "app_title": "Industry Idle",
+  "boot": {"loading": "Loading…", "done": "Loaded"},
+  "menu": {
+    "new_game": "New Game",
+    "load_game": "Load Game",
+    "settings": "Settings",
+    "about": "About",
+    "continue": "Continue",
+    "back": "Back",
+    "delete": "Delete",
+    "empty": "(empty)",
+    "slot": "Slot"
+  },
+  "hud": {
+    "cash": "Cash", "valuation": "Valuation", "map": "Map",
+    "speed": "Speed", "fps": "FPS", "autosave": "Autosave",
+    "pause": "Pause"
+  },
+  "panel": {
+    "build": "Build", "resources": "Resources", "market": "Market",
+    "policy": "Policy", "charts": "Charts", "bottleneck": "Bottleneck",
+    "search": "Search…", "prestige": "Prestige"
+  },
+  "factory": {
+    "level": "Level", "speed": "Speed", "upgrade": "Upgrade",
+    "demolish": "Demolish", "priority": "Priority", "enable": "Enable",
+    "disable": "Disable", "input": "Input", "output": "Output",
+    "cost": "Cost", "per_sec": "/s", "selected": "Selected"
+  },
+  "market_ui": {
+    "buy": "Buy", "sell": "Sell", "price": "Price",
+    "qty": "Quantity", "place_order": "Place Order", "market_order": "Market",
+    "limit_order": "Limit", "history": "History", "orders": "Orders",
+    "fee": "Fee", "total": "Total"
+  },
+  "prestige": {
+    "title": "Prestige", "desc": "Reset current map progress for $wiss permanent upgrades",
+    "current_valuation": "Current Valuation", "threshold": "Required",
+    "swiss_balance": "$wiss Balance", "gain": "Available",
+    "confirm": "Confirm Prestige", "upgrades": "Permanent Upgrades",
+    "locked": "Locked", "owned": "Owned"
+  },
+  "offline": {
+    "title": "Offline Earnings", "away_for": "Away for",
+    "earnings": "Earnings", "claim": "Claim", "total": "Total"
+  },
+  "toast": {
+    "saved": "Saved", "loaded": "Loaded",
+    "placed": "Placed", "demolished": "Demolished", "upgraded": "Upgraded",
+    "no_funds": "Insufficient funds", "no_space": "No space",
+    "no_resources": "Insufficient resources"
+  },
+  "common": {"cancel": "Cancel", "confirm": "Confirm", "close": "Close", "ok": "OK"}
+}

@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "maps": [
+    {
+      "id":"grassland",
+      "name":"草原","nameEn":"Grassland",
+      "grid":"square","cellSize":32,
+      "width":40,"height":30,
+      "seed":12345,
+      "biomes":[{"type":"plain","color":"#2a3a26","density":0.85},{"type":"forest","color":"#1d2a1a","density":0.10},{"type":"water","color":"#1a2840","density":0.05}],
+      "resourceSpots":[{"id":"iron","count":8},{"id":"coal","count":6},{"id":"copper","count":4},{"id":"stone","count":10}],
+      "startCash":10000,"startResources":{"iron":50,"coal":30,"copper":20,"stone":50},
+      "unlockedFactories":["iron_mine","coal_mine","copper_mine","quarry","water_pump","iron_smelter","copper_smelter","steel_furnace","gear_factory","brick_kiln","tool_workshop"],
+      "prestigeUnlock":0
+    },
+    {
+      "id":"coast",
+      "name":"海岸","nameEn":"Coast",
+      "grid":"hex","cellSize":36,
+      "width":30,"height":24,
+      "seed":67890,
+      "biomes":[{"type":"plain","color":"#2a3a26","density":0.5},{"type":"water","color":"#1a2840","density":0.35},{"type":"mountain","color":"#3a3a3a","density":0.15}],
+      "resourceSpots":[{"id":"iron","count":5},{"id":"copper","count":6},{"id":"oil","count":3},{"id":"stone","count":4}],
+      "startCash":25000,"startResources":{"iron":100,"coal":50,"copper":50,"oil":20},
+      "unlockedFactories":["iron_mine","coal_mine","copper_mine","quarry","water_pump","oil_drill","iron_smelter","copper_smelter","steel_furnace","gear_factory","wire_factory","plastic_factory","refinery","circuit_factory","engine_plant"],
+      "prestigeUnlock":1
+    },
+    {
+      "id":"highland",
+      "name":"高原","nameEn":"Highland",
+      "grid":"square","cellSize":32,
+      "width":48,"height":36,
+      "seed":24680,
+      "biomes":[{"type":"mountain","color":"#3a3a3a","density":0.55},{"type":"plain","color":"#2a3a26","density":0.35},{"type":"water","color":"#1a2840","density":0.10}],
+      "resourceSpots":[{"id":"iron","count":12},{"id":"coal","count":10},{"id":"copper","count":8},{"id":"oil","count":5},{"id":"stone","count":15}],
+      "startCash":50000,"startResources":{"iron":200,"coal":100,"copper":100,"oil":50,"stone":200},
+      "unlockedFactories":["iron_mine","coal_mine","copper_mine","quarry","water_pump","oil_drill","lumber_mill","iron_smelter","copper_smelter","steel_furnace","gear_factory","wire_factory","circuit_factory","plastic_factory","brick_kiln","concrete_plant","engine_plant","computer_factory","building_factory","refinery","tool_workshop","furnace_combo","refinery_combo","lab","robot_factory"],
+      "prestigeUnlock":2
+    }
+  ]
+}

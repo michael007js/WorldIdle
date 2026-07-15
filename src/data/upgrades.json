@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "upgrades": [
+    {"id":"start_cash_1","name":"启动资金 +","desc":"新游戏开局现金 +50%","cost":2,"effects":{"startCashMult":1.5}},
+    {"id":"start_cash_2","name":"启动资金 ++","desc":"新游戏开局现金再 +100%","cost":4,"requires":["start_cash_1"],"effects":{"startCashMult":2.0}},
+    {"id":"start_res_1","name":"初始库存","desc":"开局资源 +100%","cost":3,"effects":{"startResMult":2.0}},
+    {"id":"map_2","name":"解锁海岸地图","desc":"解锁第二张地图","cost":3,"effects":{"unlockMap":"coast"}},
+    {"id":"map_3","name":"解锁高原地图","desc":"解锁第三张地图","cost":8,"requires":["map_2"],"effects":{"unlockMap":"highland"}},
+    {"id":"prestige_gain_1","name":"$wiss 增强 I","desc":"$wiss 收益 +50%","cost":5,"effects":{"prestigeGainMult":1.5}},
+    {"id":"prestige_gain_2","name":"$wiss 增强 II","desc":"$wiss 收益再 +100%","cost":12,"requires":["prestige_gain_1"],"effects":{"prestigeGainMult":2.0}},
+    {"id":"offline_cap","name":"离线上限 +","desc":"离线时间上限 +24h","cost":4,"effects":{"offlineMaxSecMult":2.0}},
+    {"id":"base_speed","name":"基础速度","desc":"所有工厂产量 +20%（永久）","cost":5,"effects":{"factoryOutputMult":1.2}},
+    {"id":"market_pro","name":"市场专家","desc":"市场手续费 -30%（永久）","cost":6,"effects":{"marketFeeMult":0.7}}
+  ]
+}

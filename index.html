@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Industry Idle — Web Clone</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+</head>
+<body>
+  <!-- Root mount -->
+  <div id="app">
+    <div id="boot-screen">
+      <div class="boot-inner">
+        <h1>INDUSTRY IDLE</h1>
+        <p class="boot-sub">Web Clone · PixiJS + Worker</p>
+        <div id="boot-progress"><div id="boot-bar"></div></div>
+        <p id="boot-status">初始化中…</p>
+      </div>
+    </div>
+    <div id="game-root" class="hidden">
+      <div id="hud"></div>
+      <div id="panel-left" class="panel"></div>
+      <div id="view-main"></div>
+      <div id="panel-right" class="panel"></div>
+    </div>
+  </div>
+
+  <!-- PixiJS v8 via CDN, WebGL2 preferred with Canvas2D fallback handled internally -->
+  <script src="https://cdn.jsdelivr.net/npm/pixi.js@8.6.6/dist/pixi.min.js"></script>
+
+  <!-- ES module entry -->
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
