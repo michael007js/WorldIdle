@@ -62,7 +62,7 @@ export class Tooltip {
     // 同一格不重复刷新（减少 DOM 抖动）
     if (this.lastCell && this.lastCell.x === c.x && this.lastCell.y === c.y) {
       // 仍要更新位置（鼠标在格子内移动）
-      this._position(sx, sy);
+      this._position(clientX, clientY);
       return;
     }
     this.lastCell = { x: c.x, y: c.y };
@@ -99,18 +99,18 @@ export class Tooltip {
     }
     this.el.innerHTML = html;
     this.el.style.display = 'block';
-    this._position(sx, sy);
+    this._position(clientX, clientY);
   }
-  _position(sx, sy) {
+  _position(cx, cy) {
     // 偏移到鼠标右下，靠近边界时翻到左侧/上方
     const tw = this.el.offsetWidth;
     const th = this.el.offsetHeight;
     const vw = window.innerWidth;
     const vh = window.innerHeight;
-    let x = sx + 14;
-    let y = sy + 14;
-    if (x + tw > vw - 4) x = sx - tw - 14;
-    if (y + th > vh - 4) y = sy - th - 14;
+    let x = cx + 14;
+    let y = cy + 14;
+    if (x + tw > vw - 4) x = cx - tw - 14;
+    if (y + th > vh - 4) y = cy - th - 14;
     this.el.style.left = x + 'px';
     this.el.style.top = y + 'px';
   }
